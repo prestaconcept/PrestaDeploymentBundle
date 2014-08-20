@@ -1,7 +1,7 @@
 Presta Deployment Bundle
 ========================
 
-[![Build Status](https://secure.travis-ci.org/prestaconcept/PrestaDeploymentBundle.png?branch=master)](http://travis-ci.org/prestaconcept/PrestaCMSCoreBundle)
+[![Build Status](https://secure.travis-ci.org/prestaconcept/PrestaDeploymentBundle.png?branch=master)](http://travis-ci.org/prestaconcept/PrestaDeploymentBundle)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/prestaconcept/PrestaDeploymentBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/prestaconcept/PrestaDeploymentBundle/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/prestaconcept/PrestaDeploymentBundle/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/prestaconcept/PrestaDeploymentBundle/?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/presta/deployment-bundle/v/stable.png)](https://packagist.org/packages/presta/deployment-bundle)
