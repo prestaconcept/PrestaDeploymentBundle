@@ -1,0 +1,35 @@
+language: php
+
+php:
+  - 5.3
+  - 5.4
+  - 5.5
+  - hhvm
+
+env:
+  - SYMFONY_VERSION=2.3.*
+  - SYMFONY_VERSION=2.4.*
+  - SYMFONY_VERSION=2.5.*
+  - SYMFONY_VERSION=dev-master
+
+before_script:
+  - pear install pear/PHP_CodeSniffer
+  - phpenv rehash
+  - composer selfupdate
+  - composer require symfony/symfony:${SYMFONY_VERSION}
+
+script:
+  - phpunit --coverage-clover=coverage.clover
+  - phpcs --ignore=/vendor/*,/Tests/Resources/app/* --extensions=php --encoding=utf-8 --standard=PSR2 -np .
+
+after_script:
+  - wget https://scrutinizer-ci.com/ocular.phar
+  - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
+
+matrix:
+  allow_failures:
+    - php: hhvm
+    - env: SYMFONY_VERSION=dev-master
+
+notifications:
+  email: "nbastien@prestaconcept.net"

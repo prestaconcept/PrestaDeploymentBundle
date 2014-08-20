@@ -1,0 +1,28 @@
+{
+    "name": "presta/deployment-bundle",
+    "type": "symfony-bundle",
+    "description": "Presta Deployment bundle : This bundle centralize deployment task",
+    "keywords": ["symfony2", "bundle", "deployment", "prestaconcept"],
+    "homepage": "https://github.com/prestaconcept/PrestaDeploymentBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nicolas Bastien",
+            "email": "nbastien@prestaconcept.net",
+            "homepage": "http://www.prestaconcept.net/"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.3"
+    }
+    "autoload": {
+        "psr-4": { "Presta\\DeploymentBundle": "" }
+    },
+    "target-dir": "Presta/DeploymentBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
