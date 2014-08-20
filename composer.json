@@ -17,9 +17,8 @@
         "php": ">=5.3.3"
     },
     "autoload": {
-        "psr-4": { "Presta\\DeploymentBundle": "" }
+        "psr-4": { "Presta\\DeploymentBundle\\": "" }
     },
-    "target-dir": "Presta/DeploymentBundle",
     "extra": {
         "branch-alias": {
             "dev-master": "1.0-dev"
