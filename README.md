@@ -7,8 +7,7 @@ Presta Deployment Bundle
 [![Latest Stable Version](https://poser.pugx.org/presta/deployment-bundle/v/stable.png)](https://packagist.org/packages/presta/deployment-bundle)
 [![Total Downloads](https://poser.pugx.org/presta/deployment-bundle/downloads.png)](https://packagist.org/packages/presta/deployment-bundle)
 
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/bb367d30-c9dd-4716-b8c3-1ece4572222f/big.png)](https://insight.sensiolabs.com/projects/bb367d30-c9dd-4716-b8c3-1ece4572222f)
-[![knpbundles.com](http://knpbundles.com/prestaconcept/PrestaDeploymentBundle/badge)](http://knpbundles.com/prestaconcept/PrestaDeploymentBundle)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/42fe370d-df1d-494a-8e0a-35bc1f60040d/big.png)](https://insight.sensiolabs.com/projects/42fe370d-df1d-494a-8e0a-35bc1f60040d)[![knpbundles.com](http://knpbundles.com/prestaconcept/PrestaDeploymentBundle/badge)](http://knpbundles.com/prestaconcept/PrestaDeploymentBundle)
 
 ## Overview ##
 
