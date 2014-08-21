@@ -28,12 +28,11 @@ class WorkspaceCreateCommand extends ContainerAwareCommand
         $this
             ->setName('presta:deployment:phpcr-create-workspace')
             ->setDescription('Create the workspace in the configured repository')
-            ->setHelp(<<<EOT
-The <info>presta:deployment:phpcr-create-workspace</info> command creates a workspace
-with the configured name for this session.
-It will fail if a workspace with that name already exists or if the repository implementation
-does not support the workspace creation operation.
-EOT
+            ->setHelp(
+                'The <info>presta:deployment:phpcr-create-workspace</info> command creates a workspace'
+                . ' with the configured name for this session.' . PHP_EOL
+                . 'It will fail if a workspace with that name already exists or if the repository implementation'
+                . 'does not support the workspace creation operation.'. PHP_EOL
             );
     }
 
