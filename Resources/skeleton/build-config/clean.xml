@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+    <target name="clean" description="Cleanup build artifacts">
+        <delete dir="${basedir}/build/" />
+        <exec executable="rm" failonerror="false">
+            <arg line="composer.phar" />
+        </exec>
+        <delete file="${basedir}/app/config/parameters.yml" failonerror="false" />
+    </target>
+</project>

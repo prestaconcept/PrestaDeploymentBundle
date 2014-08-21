@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+    <target name="build-release" description="Generate a new release file">
+        <mkdir dir="${env.JENKINS_HOME}/releases/"/>
+
+        <delete file="web/bundles" />
+
+        <exec executable="php" failonerror="true" description="Remove dev dependencies and generate optimize autoload file">
+            <env key="SYMFONY__ENV" value="prod"/>
+            <arg line="composer.phar install --no-dev --verbose --prefer-dist --optimize-autoloader --no-progress"/>
+        </exec>
+
+        <exec executable="php" failonerror="true" >
+            <arg line="app/console cache:clear --env=prod" />
+        </exec>
+
+        <exec executable="php" failonerror="true" >
+            <arg line="app/console assetic:dump --env=prod" />
+        </exec>
+
+        <exec executable="tar" failonerror="true">
+            <arg value="-cj" />
+            <arg line=" --exclude build" />
+            <arg line=" --exclude .git" />
+            <arg line=" --exclude app/config/parameters.yml" />
+            <arg line=" --exclude app/cache/*" />
+            <arg line=" --exclude app/logs/*" />
+            <arg line=" --exclude composer.phar" />
+            <arg line=" --exclude vagrant/*" />
+            <arg line=" -f ${releaseName} ." />
+        </exec>
+
+        <exec executable="scp" failonerror="true">
+            <arg value="${releaseName}" />
+            <arg line="jenkins@presta-filer.local:${releaseDirectory}" />
+        </exec>
+
+        <sshexec command="ls -1dt ${releaseDirectory}* | tail -n +4 | xargs rm -rf "
+                 host="presta-filer.local"
+                 username="jenkins"
+                 keyfile="~/.ssh/id_rsa" />
+    </target>
+</project>

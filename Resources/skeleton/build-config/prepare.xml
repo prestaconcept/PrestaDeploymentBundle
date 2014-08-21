@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+    <target name="prepare" depends="clean,revision-file" description="Prepare for build">
+        <mkdir dir="${basedir}/build/"/>
+        <mkdir dir="${basedir}/build/junit"/>
+        <mkdir dir="${basedir}/build/logs/"/>
+        <mkdir dir="${basedir}/build/coverage/"/>
+        <mkdir dir="${basedir}/build/behat"/>
+        <copy file="${basedir}/app/config/parameters.yml.jenkins.dist" tofile="${basedir}/app/config/parameters.yml"/>
+        <exec executable="wget" failonerror="true">
+            <arg line="http://getcomposer.org/composer.phar" description="Download Composer"/>
+        </exec>
+        <exec executable="php" failonerror="true" description="Run Install for Composer">
+            <env key="SYMFONY__ENV" value="test"/>
+            <arg line="composer.phar install --dev --no-interaction --prefer-dist"/>
+        </exec>
+        <exec executable="php" failonerror="true" description="Run cache:clear in test environment">
+            <arg line="app/console cache:clear --env=test" />
+        </exec>
+        <exec executable="${basedir}/bin/ci_init_vhost" failonerror="false">
+            <arg line="web/" />
+        </exec>
+        <exec executable="make" failonerror="false">
+            <arg value="test-clean"/>
+        </exec>
+        <exec executable="make" failonerror="false">
+            <arg value="test-install"/>
+        </exec>
+    </target>
+</project>
