@@ -1,0 +1,8 @@
+presta_deployment:
+    persistence:
+        orm:
+            enabled: true
+        phpcr:
+            enabled: true
+    migration:
+        enabled: true
