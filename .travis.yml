@@ -19,7 +19,7 @@ before_script:
   - composer require symfony/symfony:${SYMFONY_VERSION}
 
 script:
-  - phpunit --coverage-clover=coverage.clover
+  - ./vendor/bin/phpunit --coverage-clover=coverage.clover
   - phpcs --ignore=/vendor/*,/Tests/Resources/app/* --extensions=php --encoding=utf-8 --standard=PSR2 -np .
 
 after_script:
