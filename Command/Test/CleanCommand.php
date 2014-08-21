@@ -9,7 +9,6 @@
  */
 namespace Presta\DeploymentBundle\Command\Test;
 
-use Presta\DeploymentBundle\Command\AbstractDeploymentCommand;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -18,7 +17,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * @author Nicolas Bastien <nbastien@prestaconcept.net>
  */
-class CleanCommand extends AbstractDeploymentCommand
+class CleanCommand extends AbstractTestDeploymentCommand
 {
     /**
      * {@inheritdoc}
@@ -54,8 +53,11 @@ class CleanCommand extends AbstractDeploymentCommand
      */
     protected function cleanOrm()
     {
-        $application = $this->getApplication();
-        $commandInput = new ArrayInput(array('command'=>'doctrine:database:drop', '--force' => '--force'));
+        $application = $this->getTestApplication();
+        $commandInput = new ArrayInput(array(
+            'command'   => 'doctrine:database:drop',
+            '--force'   => '--force'
+        ));
         $application->doRun($commandInput, $this->output);
 
         $connection = $this->getApplication()->getKernel()->getContainer()->get('doctrine')->getConnection();
@@ -70,8 +72,11 @@ class CleanCommand extends AbstractDeploymentCommand
      */
     protected function cleanPhpcr()
     {
-        $application = $this->getApplication();
-        $commandInput = new ArrayInput(array('command'=>'doctrine:phpcr:workspace:purge', '--force' => '--force'));
+        $application = $this->getTestApplication();
+        $commandInput = new ArrayInput(array(
+            'command'   => 'doctrine:phpcr:workspace:purge',
+            '--force'   => '--force'
+        ));
         $application->doRun($commandInput, $this->output);
     }
 }
