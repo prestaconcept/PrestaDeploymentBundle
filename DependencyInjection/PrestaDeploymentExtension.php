@@ -40,5 +40,8 @@ class PrestaDeploymentExtension extends Extension
         if ($config['migration']['enabled']) {
             $configurationManager->addMethodCall('setMigrationEnabled', array(true));
         }
+        if ($config['deploy']['rebuild']) {
+            $configurationManager->addMethodCall('setDeployRebuildEnabled', array(true));
+        }
     }
 }

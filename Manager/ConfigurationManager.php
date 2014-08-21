@@ -30,6 +30,11 @@ class ConfigurationManager
     protected $migrationEnabled = false;
 
     /**
+     * @var boolean
+     */
+    protected $deployRebuildEnabled = false;
+
+    /**
      * @param boolean $ormEnabled
      */
     public function setOrmEnabled($ormEnabled)
@@ -75,5 +80,21 @@ class ConfigurationManager
     public function isMigrationEnabled()
     {
         return $this->migrationEnabled;
+    }
+
+    /**
+     * @param boolean $deployRebuildEnabled
+     */
+    public function setDeployRebuildEnabled($deployRebuildEnabled)
+    {
+        $this->deployRebuildEnabled = $deployRebuildEnabled;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isDeployRebuildEnabled()
+    {
+        return $this->deployRebuildEnabled;
     }
 }

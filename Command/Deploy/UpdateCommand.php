@@ -38,6 +38,18 @@ class UpdateCommand extends AbstractDeploymentCommand
         $this->init($input, $output);
         $this->checkEnvironment('prod');
 
+        if ($this->getConfigurationManager()->isDeployRebuildEnabled()) {
+            $this->rebuild();
+        } else {
+            $this->update();
+        }
+    }
+
+    /**
+     * Update : this should be used when project is in production mode
+     */
+    protected function update()
+    {
         $this->log('Deploy update ..');
 
         $application = $this->getApplication();
@@ -46,4 +58,19 @@ class UpdateCommand extends AbstractDeploymentCommand
 
         $this->log('Deploy update done..');
     }
+
+    /**
+     * Rebuild : this should be used when project is in development mode
+     */
+    protected function rebuild()
+    {
+        $this->log('Deploy rebuild ..');
+
+        $application = $this->getApplication();
+        $commandInput = new ArrayInput(array('command' => 'presta:deployment:rebuild'));
+        $application->doRun($commandInput, $this->output);
+
+        $this->log('Deploy rebuild done..');
+    }
+
 }
