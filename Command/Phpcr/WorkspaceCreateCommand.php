@@ -10,6 +10,7 @@
 namespace Presta\DeploymentBundle\Command\Phpcr;
 
 use Exception;
+use Presta\DeploymentBundle\Command\AbstractDeploymentCommand;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputInterface;
@@ -18,7 +19,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * @author David Gaussinel <dgaussinel@prestaconcept.net>
  */
-class WorkspaceCreateCommand extends ContainerAwareCommand
+class WorkspaceCreateCommand extends AbstractDeploymentCommand
 {
     /**
      * {@inheritDoc}
@@ -41,20 +42,20 @@ class WorkspaceCreateCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $this->init($input, $output);
+
         $session = $this->getContainer()->get('sonata.admin.manager.doctrine_phpcr')
             ->getDocumentManager()->getPhpcrSession();
         $workspaceName = $session->getWorkspace()->getName();
-        $command = $this->getApplication()->find('doctrine:phpcr:workspace:create');
-
-        $arguments = array(
-            'command' => 'doctrine:phpcr:workspace:create',
-            'name'    => $workspaceName
-        );
-
-        $input = new ArrayInput($arguments);
 
         try {
-            $command->run($input, $output);
+            $application = $this->getApplication();
+            $commandInput = new ArrayInput(array(
+                'command' => 'doctrine:phpcr:workspace:create',
+                'name'    => $workspaceName
+            ));
+            $application->doRun($commandInput, $this->output);
+
         } catch (Exception $e) {
             $output->writeln("Can't create workspace, guess that already exists");
         }
