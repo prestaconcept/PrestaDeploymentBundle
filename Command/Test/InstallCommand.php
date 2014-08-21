@@ -9,6 +9,7 @@
  */
 namespace Presta\DeploymentBundle\Command\Test;
 
+use Presta\DeploymentBundle\Command\AbstractDeploymentCommand;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -17,7 +18,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * @author Nicolas Bastien <nbastien@prestaconcept.net>
  */
-class InstallCommand extends AbstractTestDeploymentCommand
+class InstallCommand extends AbstractDeploymentCommand
 {
     /**
      * {@inheritdoc}
@@ -35,11 +36,14 @@ class InstallCommand extends AbstractTestDeploymentCommand
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $this->init($input, $output);
+        $this->checkEnvironment('test');
 
         $this->log('Install test..');
 
-        $application = $this->getTestApplication();
-        $commandInput = new ArrayInput(array('command'=>'presta:deployment:install'));
+        $application = $this->getApplication();
+        $commandInput = new ArrayInput(array(
+            'command' => 'presta:deployment:install'
+        ));
         $application->doRun($commandInput, $this->output);
 
         $this->log('Install test done..');

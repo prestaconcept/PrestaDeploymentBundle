@@ -9,6 +9,7 @@
  */
 namespace Presta\DeploymentBundle\Command;
 
+use Presta\DeploymentBundle\Exception\EnvironmentException;
 use Presta\DeploymentBundle\Manager\ConfigurationManager;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
@@ -55,5 +56,19 @@ abstract class AbstractDeploymentCommand extends ContainerAwareCommand
         $this->output->writeln(
             $this->getHelper('formatter')->formatSection('presta-deployment', $message)
         );
+    }
+
+    /**
+     * Check if the task runs in the correct environment
+     *
+     * @param  string $environment
+     *
+     * @throws EnvironmentException
+     */
+    protected function checkEnvironment($environment)
+    {
+        if ($this->input->getOption('env') != $environment) {
+            throw new EnvironmentException('this task is only available for environment : ' . $environment);
+        }
     }
 }

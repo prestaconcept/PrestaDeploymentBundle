@@ -9,6 +9,7 @@
  */
 namespace Presta\DeploymentBundle\Command\Test;
 
+use Presta\DeploymentBundle\Command\AbstractDeploymentCommand;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -17,7 +18,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * @author Nicolas Bastien <nbastien@prestaconcept.net>
  */
-class CleanCommand extends AbstractTestDeploymentCommand
+class CleanCommand extends AbstractDeploymentCommand
 {
     /**
      * {@inheritdoc}
@@ -35,6 +36,7 @@ class CleanCommand extends AbstractTestDeploymentCommand
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $this->init($input, $output);
+        $this->checkEnvironment('test');
 
         $this->log('Clean test data ..');
 
@@ -53,7 +55,7 @@ class CleanCommand extends AbstractTestDeploymentCommand
      */
     protected function cleanOrm()
     {
-        $application = $this->getTestApplication();
+        $application = $this->getApplication();
         $commandInput = new ArrayInput(array(
             'command'   => 'doctrine:database:drop',
             '--force'   => '--force'
@@ -72,7 +74,7 @@ class CleanCommand extends AbstractTestDeploymentCommand
      */
     protected function cleanPhpcr()
     {
-        $application = $this->getTestApplication();
+        $application = $this->getApplication();
         $commandInput = new ArrayInput(array(
             'command'   => 'doctrine:phpcr:workspace:purge',
             '--force'   => '--force'
