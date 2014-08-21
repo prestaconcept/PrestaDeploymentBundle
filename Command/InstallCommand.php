@@ -34,8 +34,7 @@ class InstallCommand extends AbstractDeploymentCommand
      */
     public function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->input  = $input;
-        $this->output = $output;
+        $this->init($input, $output);
 
         if ($this->getConfigurationManager()->isOrmEnabled()) {
             $this->installOrm();

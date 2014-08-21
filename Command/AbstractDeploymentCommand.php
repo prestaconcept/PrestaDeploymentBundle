@@ -30,6 +30,16 @@ abstract class AbstractDeploymentCommand extends ContainerAwareCommand
     protected $output;
 
     /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     */
+    protected function init(InputInterface $input, OutputInterface $output)
+    {
+        $this->input  = $input;
+        $this->output = $output;
+    }
+
+    /**
      * @return ConfigurationManager
      */
     protected function getConfigurationManager()
