@@ -52,6 +52,8 @@ abstract class AbstractDeploymentCommand extends ContainerAwareCommand
      */
     protected function log($message)
     {
-        $this->output->writeln('[presta-deployment] ' . $message);
+        $this->output->writeln(
+            $this->getHelper('formatter')->formatSection('presta-deployment', $message)
+        );
     }
 }
