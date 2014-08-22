@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="lyonaeroport-soclecms" default="build">
+<project name="###PROJECT_NAME###" default="build">
 
     <property environment="env"/>
     <property name="releaseName" value="${basedir}/build/release_${env.JOB_NAME}_${env.BUILD_ID}.tar.bz2"/>
     <property name="serverName" value="jenkins@presta-filer.local" />
     <property name="releaseDirectory" value="releases/${env.JOB_NAME}/build/" />
 
-    <target name="build" depends="prepare,phpcs-ci,lint,phpunit,phpmd-ci,phpcpd" />
+    <target name="build" depends="prepare,phpcs-ci,lint,phpunit,phpmd-ci,phpcpd,behat" />
 
     <import file="${basedir}/build-config/clean.xml" />
     <import file="${basedir}/build-config/prepare.xml" />
@@ -19,6 +19,5 @@
     <import file="${basedir}/build-config/no-release.xml" />
     <import file="${basedir}/build-config/build-release.xml" />
     <import file="${basedir}/build-config/revision-file.xml" />
-    <import file="${basedir}/build-config/prepare.xml" />
 
 </project>

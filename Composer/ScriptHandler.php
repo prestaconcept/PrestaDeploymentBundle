@@ -18,7 +18,7 @@ use Symfony\Component\Filesystem\Filesystem;
 class ScriptHandler
 {
     /**
-     * Install all the configuration files used by Prestaconcept Jenkins
+     * Install all the configuration files used by Prestaconcept Jenkins and create your build.xml
      *
      * Should be declared in your composer.json file like this :
      *
@@ -44,12 +44,53 @@ class ScriptHandler
         }
 
         $fs = new Filesystem();
-        $fs->mirror(__DIR__.'/../Resources/skeleton/build-config', $rootDir . '/build-config', null, array('override'));
+        $fs->mirror(
+            __DIR__ . '/../Resources/skeleton/build-config',
+            $rootDir . '/build-config',
+            null,
+            array('override' => true)
+        );
 
         $buildData = file_get_contents(__DIR__.'/../Resources/skeleton/build.xml.dist');
+
+        $projectName = $event->getIO()->ask(
+            'Your jenkins project name: ',
+            'your-project-name'
+        );
+
+        $buildData = str_replace('###PROJECT_NAME###', $projectName, $buildData);
 
         $fs->dumpFile($buildFile, $buildData);
 
         $event->getIO()->write('[presta-deployment] Install build configuration files done');
+    }
+
+    /**
+     * Update all the configuration files used by Prestaconcept Jenkins
+     *
+     * Should be declared in your composer.json file like this :
+     *
+     * "scripts": {
+     *     "post-update-cmd": [
+     *         ...
+     *         "Presta\\DeploymentBundle\\Composer\\ScriptHandler::updateBuildConfiguration"
+     *     ],
+     * ...
+     * @param CommandEvent $event
+     */
+    public static function updateBuildConfiguration(CommandEvent $event)
+    {
+        $event->getIO()->write('[presta-deployment] Update build configuration files');
+
+        $rootDir = getcwd();
+        $fs = new Filesystem();
+        $fs->mirror(
+            __DIR__ . '/../Resources/skeleton/build-config',
+            $rootDir . '/build-config',
+            null,
+            array('override' => true)
+        );
+
+        $event->getIO()->write('[presta-deployment] Update build configuration files done');
     }
 }
