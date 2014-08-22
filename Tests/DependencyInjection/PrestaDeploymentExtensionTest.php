@@ -57,6 +57,7 @@ class PrestaDeploymentExtensionTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($configurationManager->isOrmEnabled());
         $this->assertFalse($configurationManager->isPhpcrEnabled());
         $this->assertFalse($configurationManager->isMigrationEnabled());
+        $this->assertFalse($configurationManager->isDeployRebuildEnabled());
     }
 
     /**
@@ -74,5 +75,6 @@ class PrestaDeploymentExtensionTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($configurationManager->isOrmEnabled());
         $this->assertTrue($configurationManager->isPhpcrEnabled());
         $this->assertTrue($configurationManager->isMigrationEnabled());
+        $this->assertTrue($configurationManager->isDeployRebuildEnabled());
     }
 }

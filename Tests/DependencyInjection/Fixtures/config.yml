@@ -6,3 +6,5 @@ presta_deployment:
             enabled: true
     migration:
         enabled: true
+    deploy:
+        rebuild: true

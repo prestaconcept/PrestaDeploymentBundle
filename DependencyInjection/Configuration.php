@@ -39,6 +39,12 @@ class Configuration implements ConfigurationInterface
                 ->arrayNode('migration')
                     ->canBeEnabled()
                 ->end()
+                ->arrayNode('deploy')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->booleanNode('rebuild')->defaultFalse()->end()
+                    ->end()
+                ->end()
             ->end();
 
         return $treeBuilder;
