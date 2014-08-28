@@ -11,7 +11,7 @@
         </exec>
 
         <exec executable="php" failonerror="true" >
-            <arg line="app/console cache:clear --env=prod" />
+            <arg line="app/console cache:clear --env=prod --no-warmup" />
         </exec>
 
         <exec executable="php" failonerror="true" >

@@ -15,16 +15,10 @@
             <arg line="composer.phar install --dev --no-interaction --prefer-dist"/>
         </exec>
         <exec executable="php" failonerror="true" description="Run cache:clear in test environment">
-            <arg line="app/console cache:clear --env=test" />
+            <arg line="app/console cache:clear --env=test --no-warmup" />
         </exec>
-        <exec executable="${basedir}/bin/ci_init_vhost" failonerror="false">
-            <arg line="web/" />
-        </exec>
-        <exec executable="make" failonerror="false">
-            <arg value="test-clean"/>
-        </exec>
-        <exec executable="make" failonerror="false">
-            <arg value="test-install"/>
+        <exec executable="php" failonerror="true" description="Run deployment:test-clean if previous build failed">
+            <arg line="app/console presta:deployment:test-clean --env=test" />
         </exec>
     </target>
 </project>
