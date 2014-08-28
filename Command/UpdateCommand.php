@@ -65,7 +65,7 @@ class UpdateCommand extends AbstractDeploymentCommand
     protected function handleMigrations()
     {
         $application  = $this->getApplication();
-        $commandInput = new ArrayInput(array('command' => 'app/console doctrine:migrations:migrate'));
+        $commandInput = new ArrayInput(array('command' => 'doctrine:migrations:migrate'));
         $application->doRun($commandInput, $this->output);
     }
 
