@@ -42,6 +42,9 @@ class UpdateCommand extends AbstractDeploymentCommand
         if ($this->getConfigurationManager()->isMigrationEnabled()) {
             $this->handleMigrations($input, $output);
         }
+        if ($this->getConfigurationManager()->isPhpcrEnabled()) {
+            $this->updatePhpcr();
+        }
 
         $this->log('Update done..');
     }
@@ -62,7 +65,22 @@ class UpdateCommand extends AbstractDeploymentCommand
     protected function handleMigrations()
     {
         $application  = $this->getApplication();
-        $commandInput = new ArrayInput(array('command'=>'app/console doctrine:migrations:migrate'));
+        $commandInput = new ArrayInput(array('command' => 'app/console doctrine:migrations:migrate'));
         $application->doRun($commandInput, $this->output);
+    }
+
+    /**
+     * Handle PHPCR content repository update
+     */
+    protected function updatePhpcr()
+    {
+        $this->log('Update PHPCR ..');
+
+        //Update system nodes
+        $application = $this->getApplication();
+        $commandInput = new ArrayInput(array('command' => 'doctrine:phpcr:repository:init'));
+        $application->doRun($commandInput, $this->output);
+
+        $this->log('Update PHPCR done..');
     }
 }
