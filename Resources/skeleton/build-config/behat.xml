@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
     <target name="behat" description="Validates features">
-        <exec executable="make" failonerror="false">
-            <arg value="test-clean"/>
+        <exec executable="php" failonerror="true" description="Run deployment:test-install in test environment">
+            <arg line="app/console presta:deployment:test-install --env=test" />
         </exec>
-        <exec executable="make" failonerror="false">
-            <arg value="test-install"/>
+        <exec executable="${basedir}/bin/ci_init_vhost" failonerror="false">
+            <arg line="web/" />
         </exec>
         <exec executable="${basedir}/bin/behat" failonerror="false">
             <arg line="--profile jenkins" />
+        </exec>
+        <exec executable="php" failonerror="true" description="Run deployment:test-clean in test environment">
+            <arg line="app/console presta:deployment:test-clean --env=test" />
         </exec>
     </target>
 </project>
