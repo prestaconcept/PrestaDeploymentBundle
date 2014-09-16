@@ -14,7 +14,7 @@
             <env key="SYMFONY__ENV" value="test"/>
             <arg line="composer.phar install --dev --no-interaction --prefer-dist"/>
         </exec>
-        <exec executable="php" failonerror="true" description="Run cache:clear in test environment">
+        <exec executable="php" failonerror="false" description="Run cache:clear in test environment">
             <arg line="app/console cache:clear --env=test" />
         </exec>
         <exec executable="php" failonerror="false" description="Run deployment:test-clean if previous build failed">
