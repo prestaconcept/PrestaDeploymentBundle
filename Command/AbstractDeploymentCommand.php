@@ -71,4 +71,14 @@ abstract class AbstractDeploymentCommand extends ContainerAwareCommand
             throw new EnvironmentException('this task is only available for environment : ' . $environment);
         }
     }
+
+    /**
+     * Clear application cache
+     */
+    protected function clearCache()
+    {
+        $application  = $this->getApplication();
+        $commandInput = new ArrayInput(array('command' => 'cache:clear'));
+        $application->doRun($commandInput, $this->output);
+    }
 }

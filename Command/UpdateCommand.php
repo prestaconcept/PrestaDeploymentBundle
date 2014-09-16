@@ -38,7 +38,6 @@ class UpdateCommand extends AbstractDeploymentCommand
 
         $this->log('Update ..');
 
-        $this->clearCache($input, $output);
         if ($this->getConfigurationManager()->isMigrationEnabled()) {
             $this->handleMigrations($input, $output);
         }
@@ -47,16 +46,6 @@ class UpdateCommand extends AbstractDeploymentCommand
         }
 
         $this->log('Update done..');
-    }
-
-    /**
-     * Clear application cache
-     */
-    protected function clearCache()
-    {
-        $application  = $this->getApplication();
-        $commandInput = new ArrayInput(array('command' => 'cache:clear'));
-        $application->doRun($commandInput, $this->output);
     }
 
     /**
