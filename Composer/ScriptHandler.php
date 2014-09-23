@@ -62,6 +62,13 @@ class ScriptHandler
 
         $fs->dumpFile($buildFile, $buildData);
 
+        //Create jenkins parameters file
+        file_put_contents(
+            'app/config/parameters.yml.jenkins.dist',
+            file_get_contents('app/config/parameters.yml.dist')
+        );
+        $event->getIO()->write('Please configure your jenkins parameters file');
+
         $event->getIO()->write('[presta-deployment] Install build configuration files done');
     }
 
