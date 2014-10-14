@@ -55,6 +55,7 @@ class UpdateCommand extends AbstractDeploymentCommand
     {
         $application  = $this->getApplication();
         $commandInput = new ArrayInput(array('command' => 'doctrine:migrations:migrate'));
+        $commandInput->setInteractive(false);
         $application->doRun($commandInput, $this->output);
     }
 
