@@ -72,5 +72,4 @@ class UpdateCommand extends AbstractDeploymentCommand
 
         $this->log('Deploy rebuild done..');
     }
-
 }
