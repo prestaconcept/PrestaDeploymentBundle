@@ -6,7 +6,7 @@
         <delete file="web/bundles" />
 
         <exec executable="php" failonerror="true" description="Remove dev dependencies and generate optimize autoload file">
-            <env key="SYMFONY__ENV" value="prod"/>
+            <env key="SYMFONY_ENV" value="prod"/>
             <arg line="composer.phar install --no-dev --verbose --prefer-dist --optimize-autoloader --no-progress"/>
         </exec>
 
