@@ -42,6 +42,9 @@ class InstallCommand extends AbstractDeploymentCommand
         if ($this->getConfigurationManager()->isPhpcrEnabled()) {
             $this->installPhpcr();
         }
+        if ($this->getConfigurationManager()->isMigrationEnabled()) {
+            $this->installMigration();
+        }
     }
 
     /**
@@ -82,5 +85,24 @@ class InstallCommand extends AbstractDeploymentCommand
         $application->doRun($commandInput, $this->output);
 
         $this->log('Install PHPCR done..');
+    }
+
+    /**
+     * Set all migration as executed
+     */
+    protected function installMigration()
+    {
+        $this->log('Set all migration as executed ..');
+
+        $application = $this->getApplication();
+        $commandInput = new ArrayInput(array(
+            'command'           => 'doctrine:migration:version',
+            '--add'             => true,
+            '--all'             => true,
+            '--no-interaction'  => true
+        ));
+        $application->doRun($commandInput, $this->output);
+
+        $this->log('Set all migration as executed done..');
     }
 }
