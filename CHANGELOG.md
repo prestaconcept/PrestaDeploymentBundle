@@ -1,5 +1,8 @@
 Changelog
 =========
 
+This changelog references the relevant changes (evolution, bug and security fixes)
 
-We are waiting on 1.0.0 stable release to provide changelogs
+* 1.0.1
+    
+    * Add Grunt file and command for build

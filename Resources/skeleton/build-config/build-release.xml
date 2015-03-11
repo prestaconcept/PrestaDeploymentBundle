@@ -27,6 +27,8 @@
             <arg line=" --exclude app/logs/*" />
             <arg line=" --exclude composer.phar" />
             <arg line=" --exclude vagrant/*" />
+            <arg line=" --exclude grunt-config/*" />
+            <arg line=" --exclude node_modules/*" />
             <arg line=" -f ${releaseName} ." />
         </exec>
 

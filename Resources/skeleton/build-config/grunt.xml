@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+    <target name="grunt" depends="prepare" description="Generate assets for build">
+        <exec executable="npm" failonerror="true">
+            <arg value="install"/>
+        </exec>
+        <exec executable="${basedir}/node_modules/.bin/grunt" failonerror="true" description="Genereate assets files with grunt" />
+    </target>
+</project>
