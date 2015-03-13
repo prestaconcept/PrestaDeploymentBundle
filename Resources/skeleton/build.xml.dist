@@ -6,10 +6,11 @@
     <property name="serverName" value="jenkins@presta-filer.local" />
     <property name="releaseDirectory" value="releases/${env.JOB_NAME}/build/" />
 
-    <target name="build" depends="prepare,phpcs-ci,lint,phpunit,phpmd-ci,phpcpd,behat" />
+    <target name="build" depends="grunt,prepare,phpcs-ci,lint,phpunit,phpmd-ci,phpcpd,behat" />
 
     <import file="${basedir}/build-config/clean.xml" />
     <import file="${basedir}/build-config/prepare.xml" />
+    <import file="${basedir}/build-config/grunt.xml" />
     <import file="${basedir}/build-config/lint.xml" />
     <import file="${basedir}/build-config/phpunit.xml" />
     <import file="${basedir}/build-config/behat.xml" />
