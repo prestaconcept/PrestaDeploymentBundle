@@ -11,11 +11,11 @@
         </exec>
 
         <exec executable="php" failonerror="true" >
-            <arg line="app/console cache:clear --env=prod --no-warmup" />
+            <arg line="${consolePath} cache:clear --env=prod --no-warmup" />
         </exec>
 
         <exec executable="php" failonerror="true" >
-            <arg line="app/console assetic:dump --env=prod" />
+            <arg line="${consolePath} assetic:dump --env=prod" />
         </exec>
 
         <exec executable="tar" failonerror="true">

@@ -3,7 +3,7 @@
     <target name="phpunit" description="Run unit tests with PHPUnit">
 
         <exec executable="php" failonerror="true" description="Run deployment:test-install in test environment">
-            <arg line="app/console presta:deployment:test-install --env=test" />
+            <arg line="${consolePath} presta:deployment:test-install --env=test" />
         </exec>
         <exec executable="${basedir}/bin/phpunit" failonerror="true">
             <arg line="-c ${basedir}/app/
@@ -12,7 +12,7 @@
                      --coverage-clover ${basedir}/build/logs/clover.xml" />
         </exec>
         <exec executable="php" failonerror="true" description="Run deployment:test-clean in test environment">
-            <arg line="app/console presta:deployment:test-clean --env=test" />
+            <arg line="${consolePath} presta:deployment:test-clean --env=test" />
         </exec>
     </target>
 </project>

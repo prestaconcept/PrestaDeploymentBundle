@@ -43,13 +43,7 @@ class ScriptHandler
             return;
         }
 
-        $fs = new Filesystem();
-        $fs->mirror(
-            __DIR__ . '/../Resources/skeleton/build-config',
-            $rootDir . '/build-config',
-            null,
-            array('override' => true)
-        );
+        self::copyBuildConfigFiles($event);
 
         $buildData = file_get_contents(__DIR__.'/../Resources/skeleton/build.xml.dist');
 
@@ -57,9 +51,15 @@ class ScriptHandler
             'Your jenkins project name: ',
             'your-project-name'
         );
+        $consolePath = $event->getIO()->ask(
+            'Location of console file (default: app/console): ',
+            'app/console'
+        );
 
         $buildData = str_replace('###PROJECT_NAME###', $projectName, $buildData);
+        $buildData = str_replace('###CONSOLE_PATH###', $consolePath, $buildData);
 
+        $fs = new Filesystem();
         $fs->dumpFile($buildFile, $buildData);
 
         //Create jenkins parameters file
@@ -89,15 +89,33 @@ class ScriptHandler
     {
         $event->getIO()->write('[presta-deployment] Update build configuration files');
 
+        self::copyBuildConfigFiles($event);
+
+        $event->getIO()->write('[presta-deployment] Update build configuration files done');
+    }
+
+    /**
+     * Mirror copy skeleton/build-config files into project
+     *
+     * @param CommandEvent $event
+     */
+    protected static function copyBuildConfigFiles(CommandEvent $event)
+    {
         $rootDir = getcwd();
         $fs = new Filesystem();
         $fs->mirror(
-            __DIR__ . '/../Resources/skeleton/build-config',
+            self::getSkeletonPath() . 'build-config',
             $rootDir . '/build-config',
             null,
             array('override' => true)
         );
+    }
 
-        $event->getIO()->write('[presta-deployment] Update build configuration files done');
+    /**
+     * @return string
+     */
+    protected static function getSkeletonPath()
+    {
+        return __DIR__ . '/../Resources/skeleton/';
     }
 }

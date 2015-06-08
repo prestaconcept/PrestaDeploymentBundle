@@ -15,10 +15,10 @@
             <arg line="composer.phar install --dev --no-interaction --prefer-dist"/>
         </exec>
         <exec executable="php" failonerror="false" description="Run cache:clear in test environment">
-            <arg line="app/console cache:clear --env=test" />
+            <arg line="${consolePath} cache:clear --env=test" />
         </exec>
         <exec executable="php" failonerror="false" description="Run deployment:test-clean if previous build failed">
-            <arg line="app/console presta:deployment:test-clean --env=test" />
+            <arg line="${consolePath} presta:deployment:test-clean --env=test" />
         </exec>
     </target>
 </project>
