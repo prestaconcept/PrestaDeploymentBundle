@@ -5,6 +5,7 @@
     <property name="releaseName" value="${basedir}/build/release_${env.JOB_NAME}_${env.BUILD_ID}.tar.bz2"/>
     <property name="serverName" value="jenkins@presta-filer.local" />
     <property name="releaseDirectory" value="releases/${env.JOB_NAME}/build/" />
+    <property name="consolePath" value="###CONSOLE_PATH###" />
 
     <target name="build" depends="grunt,prepare,phpcs-ci,lint,phpunit,phpmd-ci,phpcpd,behat" />
 

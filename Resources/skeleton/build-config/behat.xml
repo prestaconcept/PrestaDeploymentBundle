@@ -2,7 +2,7 @@
 <project>
     <target name="behat" description="Validates features">
         <exec executable="php" failonerror="true" description="Run deployment:test-install in test environment">
-            <arg line="app/console presta:deployment:test-install --env=test" />
+            <arg line="${consolePath} presta:deployment:test-install --env=test" />
         </exec>
         <exec executable="${basedir}/bin/ci_init_vhost" failonerror="false">
             <arg line="web/" />
@@ -11,7 +11,7 @@
             <arg line="--profile jenkins" />
         </exec>
         <exec executable="php" failonerror="true" description="Run deployment:test-clean in test environment">
-            <arg line="app/console presta:deployment:test-clean --env=test" />
+            <arg line="${consolePath} presta:deployment:test-clean --env=test" />
         </exec>
     </target>
 </project>
