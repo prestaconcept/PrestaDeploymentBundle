@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+    <target name="bower" depends="prepare" description="Get external assets for build">
+        <exec executable="npm" failonerror="true" description="Get bower executable">
+            <arg value="install"/>
+            <arg line="bower" />
+        </exec>
+        <exec executable="${basedir}/node_modules/.bin/bower" failonerror="true" description="install external assets with bower">
+            <arg value="install"/>
+        </exec>
+    </target>
+</project>

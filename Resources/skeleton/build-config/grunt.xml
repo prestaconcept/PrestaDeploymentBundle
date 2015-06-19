@@ -4,6 +4,24 @@
         <exec executable="npm" failonerror="true">
             <arg value="install"/>
         </exec>
-        <exec executable="${basedir}/node_modules/.bin/grunt" failonerror="true" description="Genereate assets files with grunt" />
+        <exec executable="mkdir" failonerror="false">
+            <arg line="-p" />
+            <arg line="${basedir}/web/scripts/packages" />
+        </exec>
+        <exec executable="chmod" failonerror="false">
+            <arg line="+w" />
+            <arg line="${basedir}/web/scripts" />
+            <arg line="-R" />
+        </exec>
+        <exec executable="mkdir" failonerror="false">
+            <arg line="-p" />
+            <arg line="${basedir}/web/styles/packages" />
+        </exec>
+        <exec executable="chmod" failonerror="false">
+            <arg line="+w" />
+            <arg line="${basedir}/web/styles" />
+            <arg line="-R" />
+        </exec>
+        <exec executable="${basedir}/node_modules/.bin/grunt" failonerror="true" description="Generate asset files with grunt" />
     </target>
 </project>

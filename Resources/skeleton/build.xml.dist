@@ -7,11 +7,12 @@
     <property name="releaseDirectory" value="releases/${env.JOB_NAME}/build/" />
     <property name="consolePath" value="###CONSOLE_PATH###" />
 
-    <target name="build" depends="grunt,prepare,phpcs-ci,lint,phpunit,phpmd-ci,phpcpd,behat" />
+    <target name="build" depends="prepare,bower,grunt,phpcs-ci,lint,phpunit,phpmd-ci,phpcpd,behat" />
 
     <import file="${basedir}/build-config/clean.xml" />
     <import file="${basedir}/build-config/prepare.xml" />
     <import file="${basedir}/build-config/grunt.xml" />
+    <import file="${basedir}/build-config/bower.xml" />
     <import file="${basedir}/build-config/lint.xml" />
     <import file="${basedir}/build-config/phpunit.xml" />
     <import file="${basedir}/build-config/behat.xml" />
