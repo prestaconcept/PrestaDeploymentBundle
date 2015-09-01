@@ -20,15 +20,16 @@
 
         <exec executable="tar" failonerror="true">
             <arg value="-cj" />
-            <arg line=" --exclude build" />
+            <arg line=" --exclude ./build" />
             <arg line=" --exclude .git" />
-            <arg line=" --exclude app/config/parameters.yml" />
-            <arg line=" --exclude app/cache/*" />
-            <arg line=" --exclude app/logs/*" />
-            <arg line=" --exclude composer.phar" />
-            <arg line=" --exclude vagrant/*" />
-            <arg line=" --exclude grunt-config/*" />
-            <arg line=" --exclude node_modules/*" />
+            <arg line=" --exclude ./app/config/parameters.yml" />
+            <arg line=" --exclude ./app/cache/*" />
+            <arg line=" --exclude ./app/logs/*" />
+            <arg line=" --exclude ./composer.phar" />
+            <arg line=" --exclude ./vagrant/*" />
+            <arg line=" --exclude ./grunt-config/*" />
+            <arg line=" --exclude ./build-config/*" />
+            <arg line=" --exclude ./node_modules/*" />
             <arg line=" -f ${releaseName} ." />
         </exec>
 
