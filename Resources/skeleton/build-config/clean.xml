@@ -4,9 +4,6 @@
         <delete dir="${basedir}/build/" />
         <delete dir="${basedir}/app/cache/" />
         <delete dir="${basedir}/app/logs/" />
-        <exec executable="rm" failonerror="false">
-            <arg line="composer.phar" />
-        </exec>
         <delete file="${basedir}/app/config/parameters.yml" failonerror="false" />
     </target>
 </project>
