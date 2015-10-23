@@ -7,12 +7,8 @@
         <mkdir dir="${basedir}/build/coverage/"/>
         <mkdir dir="${basedir}/build/behat"/>
         <copy file="${basedir}/app/config/parameters.yml.jenkins.dist" tofile="${basedir}/app/config/parameters.yml"/>
-        <exec executable="wget" failonerror="true">
-            <arg line="http://getcomposer.org/composer.phar" description="Download Composer"/>
-        </exec>
         <exec executable="php" failonerror="true" description="Run Install for Composer">
-            <env key="SYMFONY__ENV" value="test"/>
-            <arg line="composer.phar install --dev --no-interaction --prefer-dist"/>
+            <arg line="${env.JENKINS_HOME}/bin/composer install --no-interaction --prefer-dist"/>
         </exec>
         <exec executable="php" failonerror="false" description="Run cache:clear in test environment">
             <arg line="${consolePath} cache:clear --env=test" />

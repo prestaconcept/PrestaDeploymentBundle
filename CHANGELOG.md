@@ -6,6 +6,7 @@ This changelog references the relevant changes (evolution, bug and security fixe
 * 1.0.2
 
     * Fix doctrine:migration:version usage of --no-interaction option which only work on CLI mode
+    * Use local composer version instead of downloading new phar archive for each build
     
 * 1.0.1
     
