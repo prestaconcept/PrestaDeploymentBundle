@@ -98,9 +98,10 @@ class InstallCommand extends AbstractDeploymentCommand
         $commandInput = new ArrayInput(array(
             'command'           => 'doctrine:migration:version',
             '--add'             => true,
-            '--all'             => true,
-            '--no-interaction'  => true
+            '--all'             => true
         ));
+        // Replace --no-interaction option which only work on CLI mode
+        $commandInput->setInteractive(false);
         $application->doRun($commandInput, $this->output);
 
         $this->log('Set all migration as executed done..');
